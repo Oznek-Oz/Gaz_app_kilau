@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Truck, Store, Shield, Star, Flame, Phone, Clock, MapPin } from "lucide-react";
-import { db } from "@/db";
+import { db, ensureSeeded } from "@/db";
 import { products, categories } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { APP_CONFIG, formatCurrency } from "@/lib/config";
@@ -9,7 +9,8 @@ import { Card } from "@/components/ui/Card";
 
 async function getFeaturedProducts() {
   try {
-    return await db
+    await ensureSeeded();
+    const result = await db
       .select({
         id: products.id,
         name: products.name,
@@ -25,8 +26,14 @@ async function getFeaturedProducts() {
       })
       .from(products)
       .innerJoin(categories, eq(products.categoryId, categories.id))
-      .where(and(eq(products.isFeatured, true), eq(products.isActive, true)))
+      .where(and(eq(products.isFeatured, true), eq(products.isActive, true), eq(categories.isActive, true)))
       .limit(6);
+    const seen = new Set<number>();
+    return result.filter(p => {
+      if (seen.has(p.id)) return false;
+      seen.add(p.id);
+      return true;
+    });
   } catch {
     return [];
   }
@@ -34,6 +41,7 @@ async function getFeaturedProducts() {
 
 async function getCategories() {
   try {
+    await ensureSeeded();
     return await db.select().from(categories).where(eq(categories.isActive, true));
   } catch {
     return [];
