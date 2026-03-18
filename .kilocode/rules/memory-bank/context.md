@@ -1,87 +1,65 @@
-# Active Context: Next.js Starter Template
+# Active Context: GazCom - Application de commande de gaz en ligne
 
 ## Current State
 
-**Template Status**: ✅ Ready for development
+**Status**: ✅ Application complète déployée
 
-The template is a clean Next.js 16 starter with TypeScript and Tailwind CSS 4. It's ready for AI-assisted expansion to build any type of application.
+Application complète de commande de gaz en ligne pour GazCom, Maroua, Cameroun.
 
 ## Recently Completed
 
-- [x] Base Next.js 16 setup with App Router
-- [x] TypeScript configuration with strict mode
-- [x] Tailwind CSS 4 integration
-- [x] ESLint configuration
-- [x] Memory bank documentation
-- [x] Recipe system for common features
+- [x] Configuration centrale `src/lib/config.ts` — personnalisation sans code (nom, devise, frais, fidélité, paiements)
+- [x] Base de données complète (9 tables): users, products, categories, orders, order_items, order_status_history, notifications, loyalty_transactions, promotions
+- [x] Authentification JWT (login, register, logout, session cookie)
+- [x] Page d'accueil avec hero, produits phares, avantages, points de vente
+- [x] Catalogue produits avec filtres par catégorie et recherche
+- [x] Page détail produit avec ajout au panier
+- [x] Panier persistant (localStorage + context)
+- [x] Checkout complet: type de livraison, point de retrait, paiement (cash/MTN/Orange), fidélité
+- [x] Suivi commande temps réel avec historique des statuts + auto-refresh 30s
+- [x] Espace client: profil, commandes, points fidélité, notifications
+- [x] Dashboard admin: stats, commandes récentes, stocks bas
+- [x] Admin: gestion commandes (changement de statut), produits (CRUD), clients (rôles, activation)
+- [x] Notifications in-app (commandes, fidélité, système)
+- [x] Données initiales: gaz butane/propane (6kg, 12kg, 38kg), accessoires, admin par défaut
+- [x] Design mobile-first rouge/bleu-navy/blanc
 
-## Current Structure
+## Admin par défaut
 
-| File/Directory | Purpose | Status |
-|----------------|---------|--------|
-| `src/app/page.tsx` | Home page | ✅ Ready |
-| `src/app/layout.tsx` | Root layout | ✅ Ready |
-| `src/app/globals.css` | Global styles | ✅ Ready |
-| `.kilocode/` | AI context & recipes | ✅ Ready |
+- Email: `admin@gazcom.cm`
+- Mot de passe: `Admin@GazCom2024`
 
-## Current Focus
+## Structure
 
-The template is ready. Next steps depend on user requirements:
+| Route | Description |
+|-------|-------------|
+| `/` | Page d'accueil |
+| `/produits` | Catalogue (filtres catégorie/recherche) |
+| `/produits/[slug]` | Détail produit |
+| `/commande` | Checkout (auth requise) |
+| `/suivi` | Suivi commande en temps réel |
+| `/connexion` | Login / Inscription |
+| `/compte` | Espace client |
+| `/compte/commandes` | Historique commandes |
+| `/notifications` | Notifications |
+| `/contact` | Page contact |
+| `/admin` | Dashboard admin |
+| `/admin/commandes` | Gestion commandes |
+| `/admin/produits` | Gestion produits CRUD |
+| `/admin/clients` | Gestion utilisateurs |
 
-1. What type of application to build
-2. What features are needed
-3. Design/branding preferences
+## Personnalisation
 
-## Quick Start Guide
-
-### To add a new page:
-
-Create a file at `src/app/[route]/page.tsx`:
-```tsx
-export default function NewPage() {
-  return <div>New page content</div>;
-}
-```
-
-### To add components:
-
-Create `src/components/` directory and add components:
-```tsx
-// src/components/ui/Button.tsx
-export function Button({ children }: { children: React.ReactNode }) {
-  return <button className="px-4 py-2 bg-blue-600 text-white rounded">{children}</button>;
-}
-```
-
-### To add a database:
-
-Follow `.kilocode/recipes/add-database.md`
-
-### To add API routes:
-
-Create `src/app/api/[route]/route.ts`:
-```tsx
-import { NextResponse } from "next/server";
-
-export async function GET() {
-  return NextResponse.json({ message: "Hello" });
-}
-```
-
-## Available Recipes
-
-| Recipe | File | Use Case |
-|--------|------|----------|
-| Add Database | `.kilocode/recipes/add-database.md` | Data persistence with Drizzle + SQLite |
-
-## Pending Improvements
-
-- [ ] Add more recipes (auth, email, etc.)
-- [ ] Add example components
-- [ ] Add testing setup recipe
+Tout se configure dans `src/lib/config.ts` :
+- Infos entreprise (nom, téléphone, email, horaires)
+- Tarifs de livraison
+- Règles fidélité
+- Méthodes de paiement
+- Points de vente
 
 ## Session History
 
 | Date | Changes |
 |------|---------|
-| Initial | Template created with base setup |
+| Initial | Template créé |
+| 2024-03 | Application complète GazCom construite |
