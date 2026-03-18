@@ -23,6 +23,7 @@ Application complète de commande de gaz en ligne pour GazCom, Maroua, Cameroun.
 - [x] Notifications in-app (commandes, fidélité, système)
 - [x] Données initiales: gaz butane/propane (6kg, 12kg, 38kg), accessoires, admin par défaut
 - [x] Design mobile-first rouge/bleu-navy/blanc
+- [x] Correction: seed automatique au premier accès API (produits et admin non affichés)
 
 ## Admin par défaut
 
@@ -63,3 +64,4 @@ Tout se configure dans `src/lib/config.ts` :
 |------|---------|
 | Initial | Template créé |
 | 2024-03 | Application complète GazCom construite |
+| 2026-03-18 | Correction seed automatique (admin login + produits non affichés) |

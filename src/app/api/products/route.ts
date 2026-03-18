@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/db";
+import { db, ensureSeeded } from "@/db";
 import { products, categories } from "@/db/schema";
 import { eq, and, like } from "drizzle-orm";
 
 export async function GET(req: NextRequest) {
   try {
+    await ensureSeeded();
     const { searchParams } = new URL(req.url);
     const categorySlug = searchParams.get("category");
     const featured = searchParams.get("featured");

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/db";
+import { db, ensureSeeded } from "@/db";
 import { users, notifications } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { hashPassword, createToken } from "@/lib/auth";
@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 
 export async function POST(req: NextRequest) {
   try {
+    await ensureSeeded();
     const { name, email, phone, password } = await req.json();
 
     if (!name || !email || !phone || !password) {
