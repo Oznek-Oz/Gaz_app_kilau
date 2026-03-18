@@ -25,6 +25,7 @@ Application complète de commande de gaz en ligne pour GazCom, Maroua, Cameroun.
 - [x] Design mobile-first rouge/bleu-navy/blanc
 - [x] Correction: seed automatique au premier accès API (produits et admin non affichés)
 - [x] Correction: clé duplicuée dans featuredProducts (page d'accueil)
+- [x] Correction: build échouait sans DB (pages dynamiques, db null-safe)
 
 ## Admin par défaut
 
@@ -66,3 +67,4 @@ Tout se configure dans `src/lib/config.ts` :
 | Initial | Template créé |
 | 2024-03 | Application complète GazCom construite |
 | 2026-03-18 | Correction seed automatique (admin login + produits non affichés) |
+| 2026-03-18 | Correction build Cloudflare (db null-safe, pages dynamiques) |

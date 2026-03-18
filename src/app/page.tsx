@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowRight, Truck, Store, Shield, Star, Flame, Phone, Clock, MapPin } from "lucide-react";
 import { db, ensureSeeded } from "@/db";
 import { products, categories } from "@/db/schema";
@@ -7,7 +8,10 @@ import { APP_CONFIG, formatCurrency } from "@/lib/config";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { Card } from "@/components/ui/Card";
 
+export const dynamic = 'force-dynamic';
+
 async function getFeaturedProducts() {
+  if (!db) return [];
   try {
     await ensureSeeded();
     const result = await db
@@ -40,6 +44,7 @@ async function getFeaturedProducts() {
 }
 
 async function getCategories() {
+  if (!db) return [];
   try {
     await ensureSeeded();
     return await db.select().from(categories).where(eq(categories.isActive, true));

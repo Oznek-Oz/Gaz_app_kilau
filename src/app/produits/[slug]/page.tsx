@@ -4,6 +4,8 @@ import { eq, and } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { ProductDetailClient } from "./ProductDetailClient";
 
+export const dynamic = 'force-dynamic';
+
 async function getProduct(slug: string) {
   const [product] = await db
     .select({
